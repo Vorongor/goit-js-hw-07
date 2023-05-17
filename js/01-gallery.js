@@ -25,43 +25,29 @@ function makeGalleryItem(items) {
     pictures.push(tumb);
   }
 }
+
 makeGalleryItem(galleryItems);
 galleryRef.append(...pictures);
 // console.log(galleryItems);
 
-// ============CREATE MODAL WINDOW HTML======
-
-const modal = document.createElement("div");
-modal.classList.add("modal-window");
-modal.classList.add("is-hidden");
-modal.addEventListener("click", closeModal);
-modal.addEventListener("keydown", event => {
-    // if (event.code === '')
-    // console.log(event);
-});
-
-function closeModal() {
-  modal.classList.add("is-hidden");
-  modal.innerHTML = "";
-}
-body.appendChild(modal);
 
 galleryRef.addEventListener("click", makeModalWindow);
 
 function makeModalWindow(event) {
   event.preventDefault();
   // console.log(event.target);
-  if (event.target !== event.currentTarget) {
-    modal.classList.remove("is-hidden");
-    const currentImageRef = document.createElement("img");
-    currentImageRef.classList.add("modal-img");
-    currentImageRef.setAttribute(
-      "src",
-      event.target.attributes.datasource.nodeValue
-    );
-    modal.appendChild(currentImageRef);
-    console.dir(event.target.attributes.datasource.nodeValue);
-  } else {
-    console.log("nope");
+  if (event.target.nodeName !== "IMG") {
+    return;
   }
+
+  const instance = basicLightbox.create(`
+  <img src="${event.target.attributes.datasource.nodeValue}" width="800" height="600">
+`);
+  // console.log(event.target.attributes.datasource.nodeValue);
+  instance.show();
+  galleryRef.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  });
 }

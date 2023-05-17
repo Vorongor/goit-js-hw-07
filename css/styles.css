@@ -42,7 +42,7 @@
 .gallery__link:hover {
   cursor: zoom-in;
 }
-
+/* 
 .modal-window{
   position: absolute;
   top: 0%;
@@ -63,4 +63,4 @@
   transform: translate(-50%, -50%);
   width: 1140px;
   height: 996px;
-}
+} */

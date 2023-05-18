@@ -17,17 +17,8 @@ function makeGalerryMarkap(items) {
 
 galeryRef.innerHTML = makeGalerryMarkap(galleryItems);
 
-
-function onImageClick (evt) {
-    evt.preventDefault();
-    if (evt.target.nodeName !== "IMG") {
-        return;        
-    }
-    const lightbox = new SimpleLightbox('.gallery a', {
-        captionsData: "alt",
-        captionDelay: 250,
-        disableScroll: false
-     });
-}
-
-galeryRef.addEventListener('click', onImageClick)
+const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,
+    disableScroll: false
+ });

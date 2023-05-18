@@ -30,23 +30,22 @@ makeGalleryItem(galleryItems);
 galleryRef.append(...pictures);
 // console.log(galleryItems);
 
-
-
 function makeModalWindow(event) {
   event.preventDefault();
   // console.log(event.target);
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  
+
   const instance = basicLightbox.create(`
   <img src="${event.target.attributes.datasource.nodeValue}" width="800" height="600">
   `);
   // console.log(event.target.attributes.datasource.nodeValue);
   instance.show();
-  galleryRef.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", function onEckBtn (event) {
     if (event.code === "Escape") {
-      instance.close();
+      console.log("pick");
+      instance.close(() => document.removeEventListener("keydown", onEckBtn));
     }
   });
 }

@@ -31,7 +31,6 @@ galleryRef.append(...pictures);
 // console.log(galleryItems);
 
 
-galleryRef.addEventListener("click", makeModalWindow);
 
 function makeModalWindow(event) {
   event.preventDefault();
@@ -39,10 +38,10 @@ function makeModalWindow(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-
+  
   const instance = basicLightbox.create(`
   <img src="${event.target.attributes.datasource.nodeValue}" width="800" height="600">
-`);
+  `);
   // console.log(event.target.attributes.datasource.nodeValue);
   instance.show();
   galleryRef.addEventListener("keydown", (event) => {
@@ -51,3 +50,5 @@ function makeModalWindow(event) {
     }
   });
 }
+
+galleryRef.addEventListener("click", makeModalWindow);
